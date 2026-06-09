@@ -9,7 +9,6 @@ use Exception;
 class MensagemController{
     public static ?string $msg = null;
 
-    //Só admin vê as mensagens de contato recebidas.
     public static function listar(?int $deletar = null): void {
         Auth::exigirAdmin();
         $mensagens = MensagemDao::listar();
@@ -19,11 +18,9 @@ class MensagemController{
     public static function deletar(): void {
         Auth::exigirAdmin();
 
-        //Mostra a confirmação antes de excluir.
         if (isset($_GET["del"])) {
             self::listar((int) $_GET["del"]);
         }
-        //Confirmado: exclui e volta para a lista.
         if (isset($_GET["deletar"])) {
             try{
                 MensagemDao::excluir((int) $_GET["deletar"]);

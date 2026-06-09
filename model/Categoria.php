@@ -1,7 +1,6 @@
 <?php
 namespace App\Model;
 
-//Classe Categoria no mesmo padrão de Filme e Usuario: construtor privado, factory method e validação nos setters.
 class Categoria{
     private ?int $id;
     private string $nome;
@@ -13,7 +12,6 @@ class Categoria{
         $this->descricao = $descricao;
     }
 
-    //Factory method com validação do nome obrigatório. O ID pode ser nulo pois é gerado pelo banco.
     public static function criar(?int $id, ?string $nome, ?string $descricao = null): static {
         if ($nome === null || trim($nome) === "") {
             throw new \InvalidArgumentException("O nome da categoria é obrigatório");

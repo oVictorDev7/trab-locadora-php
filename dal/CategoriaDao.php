@@ -13,7 +13,6 @@ abstract class CategoriaDao{
     public static function cadastrar(Categoria $categoria): int {
         try{
             $pdo = Conn::getConn();
-            //Insert com parâmetros nomeados para evitar SQL injection.
             $sql = $pdo->prepare("INSERT INTO categorias (nome, descricao) VALUES (:nome, :descricao)");
             $sql->bindValue(":nome", $categoria->getNome(), PDO::PARAM_STR);
             $sql->bindValue(":descricao", $categoria->getDescricao(), $categoria->getDescricao() === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
@@ -22,7 +21,6 @@ abstract class CategoriaDao{
             return (int) $pdo->lastInsertId();
 
         }catch(PDOException $e){
-            //Código 23000 = violação de chave única (nome já cadastrado).
             if ($e->getCode() === "23000") {
                 throw new Exception("Já existe uma categoria com esse nome");
             }
@@ -30,7 +28,6 @@ abstract class CategoriaDao{
         }
     }
 
-    //Recupera todas as categorias e retorna uma lista de objetos Categoria.
     public static function listar(): array {
         try {
             $pdo = Conn::getConn();

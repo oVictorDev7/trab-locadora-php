@@ -13,7 +13,6 @@ abstract class UsuarioDao{
     public static function cadastrar(Usuario $usuario): int {
         try{
             $pdo = Conn::getConn();
-            //A senha já chega como hash (password_hash) vinda do controller.
             $sql = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, cpf, nascimento, tipo) VALUES (:nome, :email, :senha, :cpf, :nascimento, :tipo)");
             $sql->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
             $sql->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
@@ -26,7 +25,6 @@ abstract class UsuarioDao{
             return (int) $pdo->lastInsertId();
 
         }catch(PDOException $e){
-            //Código 23000 = violação de chave única (e-mail ou CPF já cadastrado).
             if ($e->getCode() === "23000") {
                 throw new Exception("Este e-mail ou CPF já está cadastrado");
             }
@@ -34,7 +32,6 @@ abstract class UsuarioDao{
         }
     }
 
-    //Recupera todos os usuários e retorna uma lista de objetos Usuario.
     public static function listar(): array {
         try {
             $pdo = Conn::getConn();
@@ -68,7 +65,6 @@ abstract class UsuarioDao{
         }
     }
 
-    //Busca um usuário pelo e-mail. Usado no login. Retorna null se não encontrar.
     public static function buscarPorEmail(string $email): ?Usuario {
         try {
             $pdo = Conn::getConn();
@@ -84,7 +80,6 @@ abstract class UsuarioDao{
         }
     }
 
-    //Busca um usuário pelo par CPF + data de nascimento. Usado na recuperação de senha.
     public static function buscarPorCpfNascimento(string $cpf, string $nascimento): ?Usuario {
         try {
             $pdo = Conn::getConn();
@@ -120,7 +115,6 @@ abstract class UsuarioDao{
         }
     }
 
-    //Atualiza apenas a senha (já como hash). Usado na recuperação de senha.
     public static function redefinirSenha(int $id, string $hash): void {
         try {
             $pdo = Conn::getConn();
@@ -145,7 +139,6 @@ abstract class UsuarioDao{
         }
     }
 
-    //Monta um objeto Usuario a partir de uma linha do banco (evita repetir o Usuario::criar).
     private static function montar(array $dados): Usuario {
         return Usuario::criar(
             (int) $dados["id"],

@@ -5,7 +5,6 @@ use App\Model\Mensagem;
 
 class mensagemView{
 
-    //Lista as mensagens de contato recebidas (visível só para o admin).
     public static function listar(array $mensagens, ?int $deletar = null): void {
         if ($deletar !== null): ?>
         <div class="alert">

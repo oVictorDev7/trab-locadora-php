@@ -25,7 +25,6 @@ abstract class LocacaoDao{
         }
     }
 
-    //Listagem para o admin: todas as locações com nome do usuário e título do filme (JOIN).
     public static function listar(): array {
         try {
             $pdo = Conn::getConn();
@@ -44,7 +43,6 @@ abstract class LocacaoDao{
         }
     }
 
-    //Listagem das locações de um único usuário (as "minhas locações").
     public static function listarPorUsuario(int $usuarioId): array {
         try {
             $pdo = Conn::getConn();
@@ -64,7 +62,6 @@ abstract class LocacaoDao{
         }
     }
 
-    //Transforma as linhas do banco em objetos Locacao.
     private static function montarLista(array $res): array {
         $locacoes = [];
         foreach($res as $dados){

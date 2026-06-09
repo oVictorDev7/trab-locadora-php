@@ -3,11 +3,8 @@ namespace App\View;
 
 use App\Util\Csrf;
 
-//Views das páginas de navegação aberta (catálogo, sobre e contato).
 class paginaView{
 
-    //Catálogo público: vitrine de filmes em cards, com modal "Ver mais" (sem precisar de login).
-    //$logado indica se deve mostrar o botão de locar dentro do modal.
     public static function catalogo(array $filmes, bool $logado = false): void { ?>
         <section class="home">
             <h1>Catálogo de Filmes</h1>
@@ -46,7 +43,6 @@ class paginaView{
             <?php endif; ?>
         </section>
 
-        <!-- Modal reutilizado por todos os cards; preenchido dinamicamente via JS. -->
         <div id="modalFilme" class="modal">
             <div class="modal-conteudo">
                 <span class="modal-fechar">&times;</span>
@@ -59,7 +55,6 @@ class paginaView{
                 <p><strong>Valor da Locação:</strong> <span id="modalValor"></span></p>
 
                 <?php if ($logado): ?>
-                    <!-- Botão de locar: envia o id do filme (preenchido pelo JS) via POST com CSRF. -->
                     <form action="?p=locar" method="post">
                         <?= Csrf::campo() ?>
                         <input type="hidden" name="filme_id" id="modalFilmeId" value="">

@@ -13,12 +13,10 @@ class CategoriaController{
     public static ?string $msg = null;
 
     public static function cadastrar(): void {
-        //Só admin gerencia categorias.
         Auth::exigirAdmin();
 
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nome"])) {
             try{
-                //Valida o token CSRF antes de qualquer escrita.
                 Csrf::validar();
 
                 $nome      = Util::prepararTexto($_POST["nome"]);
@@ -58,7 +56,6 @@ class CategoriaController{
             }
         }
 
-        //Carrega a categoria pelo id da URL para preencher o formulário.
         if (isset($_GET["alt"])) {
             $categoria = CategoriaDao::buscarPorId((int) $_GET["alt"]);
         }
@@ -75,11 +72,9 @@ class CategoriaController{
     public static function deletar(): void {
         Auth::exigirAdmin();
 
-        //Mostra a confirmação antes de excluir.
         if (isset($_GET["del"])) {
             self::listar((int) $_GET["del"]);
         }
-        //Confirmado: exclui e volta para a lista.
         if (isset($_GET["deletar"])) {
             try{
                 CategoriaDao::excluir((int) $_GET["deletar"]);

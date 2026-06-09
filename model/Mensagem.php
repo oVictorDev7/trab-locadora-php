@@ -1,13 +1,11 @@
 <?php
 namespace App\Model;
 
-//Mensagem enviada pelo formulário de contato. Mesmo padrão: construtor privado, factory com validação.
 class Mensagem{
     private ?int $id;
     private string $nome;
     private string $email;
     private string $mensagem;
-    //Data de envio (preenchida pelo banco). Nula ao criar.
     private ?string $dataEnvio;
 
     private function __construct(?int $id, string $nome, string $email, string $mensagem, ?string $dataEnvio){
@@ -18,7 +16,6 @@ class Mensagem{
         $this->dataEnvio = $dataEnvio;
     }
 
-    //Factory com validação dos campos obrigatórios.
     public static function criar(?int $id, ?string $nome, ?string $email, ?string $mensagem, ?string $dataEnvio = null): static {
         if ($nome === null || trim($nome) === "") {
             throw new \InvalidArgumentException("Informe o seu nome");

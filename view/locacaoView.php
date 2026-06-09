@@ -5,7 +5,6 @@ use App\Model\Locacao;
 
 class locacaoView{
 
-    //"Minhas locações": o que o usuário logado já alugou.
     public static function minhas(array $locacoes, bool $sucesso = false, ?string $msg = null): void {
         if ($sucesso): ?>
         <div class="sucesso">
@@ -44,7 +43,6 @@ class locacaoView{
         <?php
     }
 
-    //Listagem para o admin: todas as locações, mostrando quem alugou qual filme.
     public static function listar(array $locacoes): void { ?>
         <section>
             <h1>Locações</h1>

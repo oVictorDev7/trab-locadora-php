@@ -7,9 +7,7 @@ use App\Controller\UsuarioController;
 
 class usuarioView{
 
-    //Tela de login. O e-mail vem pré-preenchido do cookie, se existir.
     public static function login(?string $msg): void {
-        //COOKIE: recupera o e-mail lembrado da última vez.
         $emailLembrado = $_COOKIE[UsuarioController::COOKIE_EMAIL] ?? "";
         if($msg !== null): ?>
         <div class="erro">
@@ -40,7 +38,6 @@ class usuarioView{
         <?php
     }
 
-    //Tela de cadastro de usuário comum. Coleta CPF e nascimento (usados na recuperação de senha).
     public static function registro(?string $msg): void {
         if($msg !== null): ?>
         <div class="erro">
@@ -74,7 +71,6 @@ class usuarioView{
         <?php
     }
 
-    //Tela de recuperação de senha: valida CPF + data de nascimento.
     public static function recuperar(?string $msg, ?string $sucesso): void {
         if($sucesso !== null): ?>
         <div class="sucesso">
@@ -111,7 +107,6 @@ class usuarioView{
         <?php
     }
 
-    //CRUD admin: lista de usuários.
     public static function listar(array $usuarios, ?int $deletar = null): void {
         if ($deletar !== null): ?>
         <div class="alert">
@@ -155,7 +150,6 @@ class usuarioView{
         <?php
     }
 
-    //CRUD admin: formulário de edição de usuário (a senha não é alterada aqui).
     public static function formulario(?string $msg, ?Usuario $usuario = null): void {
         if($msg !== null): ?>
         <div class="alert">

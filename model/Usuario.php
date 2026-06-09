@@ -1,13 +1,11 @@
 <?php
 namespace App\Model;
 
-//Classe Usuario no mesmo padrão de Filme: construtor privado, factory method estático e validação.
 class Usuario{
     private ?int $id;
     private string $nome;
     private string $email;
     private string $senha;
-    //CPF (somente dígitos) e data de nascimento são usados na recuperação de senha.
     private string $cpf;
     private string $nascimento;
     private string $tipo;
@@ -22,7 +20,6 @@ class Usuario{
         $this->tipo = $tipo;
     }
 
-    //Factory method com validação dos campos obrigatórios. O tipo só pode ser "admin" ou "usuario".
     public static function criar(?int $id, ?string $nome, ?string $email, ?string $senha, ?string $cpf, ?string $nascimento, string $tipo = "usuario"): static {
         if ($nome === null || trim($nome) === "") {
             throw new \InvalidArgumentException("O nome é obrigatório");
@@ -33,12 +30,10 @@ class Usuario{
         if ($senha === null || trim($senha) === "") {
             throw new \InvalidArgumentException("A senha é obrigatória");
         }
-        //Remove tudo que não for número e valida que sobraram 11 dígitos.
         $cpf = preg_replace("/\D/", "", $cpf ?? "");
         if (strlen($cpf) !== 11) {
             throw new \InvalidArgumentException("Informe um CPF válido (11 dígitos)");
         }
-        //Valida o formato da data de nascimento (AAAA-MM-DD).
         if ($nascimento === null || !preg_match("/^\d{4}-\d{2}-\d{2}$/", $nascimento)) {
             throw new \InvalidArgumentException("Informe uma data de nascimento válida");
         }

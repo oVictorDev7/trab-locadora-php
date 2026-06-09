@@ -12,22 +12,17 @@ abstract class FilmeDao{
 
     public static function cadastrar(Filme $filme) : int {
         try{
-            //Obtendo a conexão com o banco de dados.
             $pdo = Conn::getConn();
-            //Query de inserção com parâmetros nomeados para evitar SQL injection.
             $sql = $pdo->prepare("INSERT INTO filmes (titulo, genero, ano, valor_locacao, duracao, idade_recomendada, imagem) VALUES (:titulo, :genero, :ano, :valor, :duracao, :idade, :imagem)");
-            //Associando os valores aos parâmetros, especificando o tipo de cada um. Valor DECIMAL vai como string.
             $sql->bindValue(":titulo", $filme->getTitulo(), PDO::PARAM_STR);
             $sql->bindValue(":genero", $filme->getGenero(), PDO::PARAM_STR);
             $sql->bindValue(":ano", $filme->getAno(), PDO::PARAM_INT);
             $sql->bindValue(":valor", $filme->getValorLocacao(), PDO::PARAM_STR);
             $sql->bindValue(":duracao", $filme->getDuracao(), PDO::PARAM_INT);
             $sql->bindValue(":idade", $filme->getIdadeRecomendada(), PDO::PARAM_STR);
-            //Imagem pode ser nula quando o filme é cadastrado sem capa.
             $sql->bindValue(":imagem", $filme->getImagem(), $filme->getImagem() === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
 
             $sql->execute();
-            //Retornando o ID recém-inserido.
             return (int) $pdo->lastInsertId();
 
         }catch(PDOException $e){
@@ -35,17 +30,14 @@ abstract class FilmeDao{
         }
     }
 
-    //Recupera todos os filmes e retorna uma lista de objetos Filme.
     public static function listar(): array {
         try {
             $pdo = Conn::getConn();
             $sql = $pdo->prepare("SELECT * FROM filmes");
             $sql->execute();
-            //fetchAll retorna um array associativo, um elemento por filme.
             $res = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             $filmes = [];
-            //Criando um objeto Filme para cada registro usando a factory method criar.
             foreach($res as $dados){
                 $filmes[] = self::montar($dados);
             }
@@ -107,7 +99,6 @@ abstract class FilmeDao{
         }
     }
 
-    //Monta um objeto Filme a partir de uma linha do banco (evita repetir o Filme::criar).
     private static function montar(array $dados): Filme {
         return Filme::criar(
             (int) $dados["id"],

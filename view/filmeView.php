@@ -6,7 +6,6 @@ use App\Util\Csrf;
 
 class filmeView{
 
-    //Exibe a lista de filmes em uma tabela HTML.
     public static function listar(array $filmes, ?int $deletar = null): void {
         if ($deletar !== null): ?>
         <div class="alert">
@@ -34,7 +33,6 @@ class filmeView{
                 </tr>
             </thead>
             <tbody>
-                <!-- Itera sobre os filmes e exibe cada um numa linha, acessando os getters. -->
                 <?php foreach($filmes as $filme): ?>
                 <tr>
                     <td><?= $filme->getId()?></td>
@@ -60,7 +58,6 @@ class filmeView{
     <?php
     }
 
-    //Exibe o formulário de cadastro/edição. Recebe a mensagem de erro, opcionalmente o filme a editar e a lista de categorias para o select.
     public static function formulario(?string $msg, ?Filme $filme = null, array $categorias = []): void {
         if($msg !== null): ?>
         <div class="alert">
@@ -68,7 +65,6 @@ class filmeView{
             <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
         </div>
 <?php endif; ?>
-    <!-- enctype obrigatório para enviar arquivos (a imagem do filme). -->
     <form action="<?= isset($filme)? "?p=alt": "?p=cad" ?>" method="post" enctype="multipart/form-data">
     <?= Csrf::campo() ?>
     <?php if(isset($filme)): ?>

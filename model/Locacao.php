@@ -1,8 +1,6 @@
 <?php
 namespace App\Model;
 
-//Locação: relaciona um usuário a um filme alugado. Mesmo padrão dos demais models.
-//Os campos usuarioNome e filmeTitulo são preenchidos apenas nas listagens (via JOIN) para exibição.
 class Locacao{
     private ?int $id;
     private int $usuarioId;
@@ -20,7 +18,6 @@ class Locacao{
         $this->filmeTitulo = $filmeTitulo;
     }
 
-    //Factory com validação: usuário e filme precisam ser identificadores válidos.
     public static function criar(?int $id, ?int $usuarioId, ?int $filmeId, ?string $dataLocacao = null, ?string $usuarioNome = null, ?string $filmeTitulo = null): static {
         if ($usuarioId === null || $usuarioId <= 0) {
             throw new \InvalidArgumentException("Usuário inválido para a locação");

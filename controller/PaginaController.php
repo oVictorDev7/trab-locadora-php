@@ -10,15 +10,12 @@ use App\Dal\MensagemDao;
 use App\View\paginaView;
 use Exception;
 
-//Controla as páginas de navegação aberta (acessíveis sem login): catálogo, sobre e contato.
 class PaginaController{
     public static ?string $msg = null;
     public static ?string $sucesso = null;
 
-    //Vitrine pública: lista os filmes em cards, sem exigir login.
     public static function catalogo(): void {
         $filmes = FilmeDao::listar();
-        //O catálogo é público, mas só quem está logado pode locar.
         paginaView::catalogo($filmes, Auth::estaLogado());
     }
 
@@ -35,7 +32,6 @@ class PaginaController{
             try{
                 Csrf::validar();
 
-                //A validação dos campos fica no factory do model.
                 $msg = Mensagem::criar(null, $nome, $email, $mensagem);
                 MensagemDao::cadastrar($msg);
 

@@ -1,8 +1,3 @@
-/*==================================================================
-  TEMA ESCURO — Roxo / Vermelho / Ciano
-  Locadora de Filmes
-==================================================================*/
-
 :root {
     --bg:           #0d0b14;
     --bg-2:         #141121;
@@ -49,7 +44,6 @@ body {
     color: #fff;
 }
 
-/* Barra de rolagem personalizada */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg-2); }
 ::-webkit-scrollbar-thumb {
@@ -57,7 +51,6 @@ body {
     border-radius: 10px;
 }
 
-/*==================== CABEÇALHO / MENU ====================*/
 header {
     position: sticky;
     top: 0;
@@ -124,7 +117,6 @@ nav {
     font-size: 14px;
 }
 
-/*==================== ESTRUTURA ====================*/
 main {
     max-width: 1140px;
     margin: 0 auto;
@@ -149,7 +141,6 @@ main h1 {
     -webkit-text-fill-color: transparent;
 }
 
-/*==================== FORMULÁRIOS ====================*/
 form { margin-top: 16px; }
 
 label {
@@ -217,7 +208,6 @@ button[type="reset"]:hover {
     filter: brightness(1.12);
 }
 
-/* Link de ação "+ Novo" com cara de botão */
 .btn-add {
     display: inline-block;
     margin-top: 6px;
@@ -235,7 +225,6 @@ button[type="reset"]:hover {
     filter: brightness(1.12);
 }
 
-/*==================== TABELAS ====================*/
 table {
     width: 100%;
     border-collapse: separate;
@@ -274,10 +263,8 @@ td a {
     font-weight: 600;
 }
 td a:hover { text-decoration: underline; }
-/* Links de exclusão em vermelho */
 td a[href*="&del="] { color: var(--red); }
 
-/*==================== MENSAGENS ====================*/
 .alert, .erro, .sucesso {
     padding: 14px 42px 14px 16px;
     border-radius: 10px;
@@ -329,7 +316,6 @@ td a[href*="&del="] { color: var(--red); }
 }
 .aviso-categoria a { color: var(--cyan); font-weight: 700; }
 
-/*==================== CARDS DE FILMES (CATÁLOGO) ====================*/
 .home > p {
     color: var(--muted);
     margin-bottom: 24px;
@@ -420,7 +406,6 @@ td a[href*="&del="] { color: var(--red); }
     color: var(--muted);
 }
 
-/*==================== MODAL ====================*/
 .modal {
     display: none;
     position: fixed;
@@ -463,7 +448,6 @@ td a[href*="&del="] { color: var(--red); }
 }
 .modal-conteudo p strong { color: var(--cyan); }
 
-/* Botão de locar dentro do modal */
 .btn-locar {
     width: 100%;
     margin-top: 16px;
@@ -501,7 +485,6 @@ td a[href*="&del="] { color: var(--red); }
 }
 .modal-fechar:hover { color: var(--red); }
 
-/*==================== LOGIN / CADASTRO / CONTATO ====================*/
 .auth {
     max-width: 440px;
     margin: 40px auto;
@@ -551,7 +534,6 @@ td a[href*="&del="] { color: var(--red); }
     accent-color: var(--purple);
 }
 
-/*==================== PÁGINAS DE CONTEÚDO (SOBRE / 404) ====================*/
 .conteudo {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -579,7 +561,6 @@ td a[href*="&del="] { color: var(--red); }
 .conteudo a { color: var(--cyan); font-weight: 700; }
 .conteudo strong { color: var(--purple-bright); }
 
-/*==================== RESPONSIVO ====================*/
 @media (max-width: 640px) {
     nav { gap: 10px; }
     .nav-user { margin-left: 0; width: 100%; justify-content: flex-end; }

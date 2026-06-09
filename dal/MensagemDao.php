@@ -26,7 +26,6 @@ abstract class MensagemDao{
         }
     }
 
-    //Lista todas as mensagens, da mais recente para a mais antiga.
     public static function listar(): array {
         try {
             $pdo = Conn::getConn();

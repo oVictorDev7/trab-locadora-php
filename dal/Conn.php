@@ -4,7 +4,6 @@ namespace App\Dal;
 use PDO;
 use PDOException;
 use Exception;
-//Classe abstrata para gerenciar a conexão com o banco usando PDO.
 abstract class Conn{
     private static ?PDO $conn = null;
     private static string $host = "localhost:3306";
@@ -12,7 +11,6 @@ abstract class Conn{
     private static string $user = "root";
     private static string $password = "";
 
-    //Singleton: garante uma única conexão durante a execução do programa.
     public static function getConn() : PDO{
         if (self::$conn === null) {
             try {

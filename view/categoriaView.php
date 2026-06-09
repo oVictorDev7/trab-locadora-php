@@ -6,7 +6,6 @@ use App\Util\Csrf;
 
 class categoriaView{
 
-    //Exibe a lista de categorias em uma tabela HTML.
     public static function listar(array $categorias, ?int $deletar = null): void {
         if ($deletar !== null): ?>
         <div class="alert">
@@ -45,7 +44,6 @@ class categoriaView{
         <?php
     }
 
-    //Exibe o formulário de cadastro/edição de categoria.
     public static function formulario(?string $msg, ?Categoria $categoria = null): void {
         if($msg !== null): ?>
         <div class="alert">
