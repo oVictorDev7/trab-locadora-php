@@ -1,5 +1,11 @@
 <?php
 
+/* Enzo F F Chemin       - RGM: 33402621
+Felipe Paulista Silveira - RGM: 43389988
+Leonardo Valente Montes  - RGM: 42979846
+Hygor Daniel Fieszt      - RGM: 41984561
+Victor Gonçalves         - RGM: 38094649 */
+
 declare(strict_types=1);
 namespace App;
 
